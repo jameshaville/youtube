@@ -6,6 +6,8 @@ final class HomeController: UIViewController {
   private let videoListCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
   private let menuBar = MenuBar(frame: .zero)
   private let videoService: VideoService
+  private var heightConstraint = NSLayoutConstraint()
+  private let settingsView = SettingsView()
   
   let navigationTitleLabel: UILabel = {
     let label = UILabel()
@@ -61,6 +63,8 @@ final class HomeController: UIViewController {
     if let flowLayout = videoListCollectionView.collectionViewLayout as? UICollectionViewFlowLayout {
       flowLayout.estimatedItemSize = UICollectionViewFlowLayoutAutomaticSize
     }
+    
+    settingsView.delegate = self
   }
   
   private func setupHierarchy() {
@@ -96,5 +100,28 @@ final class HomeController: UIViewController {
   }
   
   @objc private func searchTapped() { print("search tapped") }
-  @objc private func moreTapped() { print("more tapped") }
+  @objc private func moreTapped() {
+    settingsView.show()
+  }
+}
+
+extension HomeController: SettingsViewDelegate {
+  
+  func show(_ settingsView: SettingsView, setting: Setting) {
+    settingsView.dismiss { [weak self] in
+      if setting.name == .cancel { return }
+      let settingsController = UIViewController()
+      settingsController.title = setting.name.rawValue
+      settingsController.view.backgroundColor = .white
+      self?.navigationController?.navigationBar.tintColor = .white
+      self?.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
+      self?.navigationController?.pushViewController(settingsController, animated: true)
+    }
+  }
+  
+  func dismiss(completion: @escaping ()->()) {
+    settingsView.dismiss {
+      completion()
+    }
+  }
 }

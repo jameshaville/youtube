@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FB5555092022984D002B87D7 /* Setting.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB5555082022984D002B87D7 /* Setting.swift */; };
+		FB55550B20264489002B87D7 /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB55550A20264489002B87D7 /* SettingsCell.swift */; };
 		FB77AA012012B3FF009C1D17 /* ViewConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB77AA002012B3FF009C1D17 /* ViewConstants.swift */; };
 		FB77AA032012BCD3009C1D17 /* MenuBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB77AA022012BCD3009C1D17 /* MenuBar.swift */; };
 		FB77AA052013EEA0009C1D17 /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB77AA042013EEA0009C1D17 /* Video.swift */; };
@@ -15,6 +17,7 @@
 		FB77AA0B2016BE3C009C1D17 /* MenuItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB77AA0A2016BE3C009C1D17 /* MenuItemCell.swift */; };
 		FB77AA132016C10F009C1D17 /* NetworkUIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB77AA122016C10F009C1D17 /* NetworkUIImageView.swift */; };
 		FB77AA162019471D009C1D17 /* APIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB77AA152019471D009C1D17 /* APIResponse.swift */; };
+		FB77AA1A201D28DA009C1D17 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB77AA19201D28DA009C1D17 /* SettingsView.swift */; };
 		FBB863372002DEC600292AEB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB863362002DEC600292AEB /* AppDelegate.swift */; };
 		FBB863392002DEC600292AEB /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB863382002DEC600292AEB /* HomeController.swift */; };
 		FBB8633E2002DEC700292AEB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FBB8633D2002DEC700292AEB /* Assets.xcassets */; };
@@ -43,6 +46,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		FB5555082022984D002B87D7 /* Setting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Setting.swift; sourceTree = "<group>"; };
+		FB55550A20264489002B87D7 /* SettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCell.swift; sourceTree = "<group>"; };
 		FB77AA002012B3FF009C1D17 /* ViewConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewConstants.swift; sourceTree = "<group>"; };
 		FB77AA022012BCD3009C1D17 /* MenuBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBar.swift; sourceTree = "<group>"; };
 		FB77AA042013EEA0009C1D17 /* Video.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
@@ -51,6 +56,7 @@
 		FB77AA0A2016BE3C009C1D17 /* MenuItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemCell.swift; sourceTree = "<group>"; };
 		FB77AA122016C10F009C1D17 /* NetworkUIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkUIImageView.swift; sourceTree = "<group>"; };
 		FB77AA152019471D009C1D17 /* APIResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIResponse.swift; sourceTree = "<group>"; };
+		FB77AA19201D28DA009C1D17 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		FBB863332002DEC600292AEB /* YouTube.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YouTube.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FBB863362002DEC600292AEB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FBB863382002DEC600292AEB /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
@@ -96,6 +102,7 @@
 			isa = PBXGroup;
 			children = (
 				FB77AA042013EEA0009C1D17 /* Video.swift */,
+				FB5555082022984D002B87D7 /* Setting.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -105,6 +112,7 @@
 			children = (
 				FBB863A220101BC000292AEB /* VideoCell.swift */,
 				FB77AA0A2016BE3C009C1D17 /* MenuItemCell.swift */,
+				FB55550A20264489002B87D7 /* SettingsCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -122,6 +130,7 @@
 			children = (
 				FB77AA022012BCD3009C1D17 /* MenuBar.swift */,
 				FB77AA122016C10F009C1D17 /* NetworkUIImageView.swift */,
+				FB77AA19201D28DA009C1D17 /* SettingsView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -361,6 +370,7 @@
 				FB77AA012012B3FF009C1D17 /* ViewConstants.swift in Sources */,
 				FB77AA092016B454009C1D17 /* VideoService.swift in Sources */,
 				FBB863392002DEC600292AEB /* HomeController.swift in Sources */,
+				FB5555092022984D002B87D7 /* Setting.swift in Sources */,
 				FB77AA0B2016BE3C009C1D17 /* MenuItemCell.swift in Sources */,
 				FB77AA162019471D009C1D17 /* APIResponse.swift in Sources */,
 				FB77AA032012BCD3009C1D17 /* MenuBar.swift in Sources */,
@@ -369,6 +379,8 @@
 				FB77AA052013EEA0009C1D17 /* Video.swift in Sources */,
 				FB77AA0720169E78009C1D17 /* UIView+Extensions.swift in Sources */,
 				FBB863A520101BF200292AEB /* HomeDataSource.swift in Sources */,
+				FB77AA1A201D28DA009C1D17 /* SettingsView.swift in Sources */,
+				FB55550B20264489002B87D7 /* SettingsCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

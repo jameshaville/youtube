@@ -22,7 +22,7 @@ final class MenuBar: UIView {
   }
   
   required init?(coder aDecoder: NSCoder) {
-    fatalError()
+    fatalError("init(coder:) has not been implemented")
   }
 
   private func setupViews() {
