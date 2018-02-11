@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		FB5555092022984D002B87D7 /* Setting.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB5555082022984D002B87D7 /* Setting.swift */; };
 		FB55550B20264489002B87D7 /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB55550A20264489002B87D7 /* SettingsCell.swift */; };
+		FB55550D20277744002B87D7 /* FeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB55550C20277744002B87D7 /* FeedCell.swift */; };
 		FB77AA012012B3FF009C1D17 /* ViewConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB77AA002012B3FF009C1D17 /* ViewConstants.swift */; };
 		FB77AA032012BCD3009C1D17 /* MenuBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB77AA022012BCD3009C1D17 /* MenuBar.swift */; };
 		FB77AA052013EEA0009C1D17 /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB77AA042013EEA0009C1D17 /* Video.swift */; };
@@ -48,6 +49,7 @@
 /* Begin PBXFileReference section */
 		FB5555082022984D002B87D7 /* Setting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Setting.swift; sourceTree = "<group>"; };
 		FB55550A20264489002B87D7 /* SettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCell.swift; sourceTree = "<group>"; };
+		FB55550C20277744002B87D7 /* FeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCell.swift; sourceTree = "<group>"; };
 		FB77AA002012B3FF009C1D17 /* ViewConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewConstants.swift; sourceTree = "<group>"; };
 		FB77AA022012BCD3009C1D17 /* MenuBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBar.swift; sourceTree = "<group>"; };
 		FB77AA042013EEA0009C1D17 /* Video.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
@@ -113,6 +115,7 @@
 				FBB863A220101BC000292AEB /* VideoCell.swift */,
 				FB77AA0A2016BE3C009C1D17 /* MenuItemCell.swift */,
 				FB55550A20264489002B87D7 /* SettingsCell.swift */,
+				FB55550C20277744002B87D7 /* FeedCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -379,6 +382,7 @@
 				FB77AA052013EEA0009C1D17 /* Video.swift in Sources */,
 				FB77AA0720169E78009C1D17 /* UIView+Extensions.swift in Sources */,
 				FBB863A520101BF200292AEB /* HomeDataSource.swift in Sources */,
+				FB55550D20277744002B87D7 /* FeedCell.swift in Sources */,
 				FB77AA1A201D28DA009C1D17 /* SettingsView.swift in Sources */,
 				FB55550B20264489002B87D7 /* SettingsCell.swift in Sources */,
 			);

@@ -3,7 +3,7 @@ import UIKit
 final class HomeController: UIViewController {
 
   private let homeDataSource: HomeDataSource
-  private let videoListCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+  private let feedCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
   private let menuBar = MenuBar(frame: .zero)
   private let videoService: VideoService
   private var heightConstraint = NSLayoutConstraint()
@@ -31,18 +31,6 @@ final class HomeController: UIViewController {
     
     super.viewDidLoad()
 
-    videoService.getVideos { error, videos in
-      if let error = error {
-        print(error.localizedDescription)
-        return
-      }
-      
-      DispatchQueue.main.async { [weak self] in
-        self?.homeDataSource.update(with: videos ?? [])
-        self?.videoListCollectionView.reloadData()
-      }
-    }
-    
     setupViews()
     setupHierarchy()
     setupLayout()
@@ -54,34 +42,39 @@ final class HomeController: UIViewController {
   
   private func setupViews() {
     setupNavigationBar()
-
-    videoListCollectionView.backgroundColor = .white
-    videoListCollectionView.alwaysBounceVertical = true
-    videoListCollectionView.dataSource = homeDataSource
-    videoListCollectionView.register(VideoCell.self, forCellWithReuseIdentifier: VideoCell.cellIdentifier)
     
-    if let flowLayout = videoListCollectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+    feedCollectionView.contentInsetAdjustmentBehavior = .never
+
+    feedCollectionView.dataSource = self
+    feedCollectionView.delegate = self
+    feedCollectionView.isPagingEnabled = true
+    feedCollectionView.register(FeedCell.self, forCellWithReuseIdentifier: FeedCell.cellIdentifier)
+
+    if let flowLayout = feedCollectionView.collectionViewLayout as? UICollectionViewFlowLayout {
       flowLayout.estimatedItemSize = UICollectionViewFlowLayoutAutomaticSize
+      flowLayout.scrollDirection = .horizontal
     }
     
     settingsView.delegate = self
+    menuBar.delegate = self
+    
   }
   
   private func setupHierarchy() {
     view.addSubview(menuBar)
-    view.addSubview(videoListCollectionView)
+    view.addSubview(feedCollectionView)
   }
   
   private func setupLayout() {
-    videoListCollectionView.translatesAutoresizingMaskIntoConstraints = false
     menuBar.translatesAutoresizingMaskIntoConstraints = false
-    
+    feedCollectionView.translatesAutoresizingMaskIntoConstraints = false
+
     menuBar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
     menuBar.pinToSuperview([.left, .right])
     menuBar.heightAnchor.constraint(equalToConstant: MenuBar.height).isActive = true
     
-    videoListCollectionView.topAnchor.constraint(equalTo: menuBar.bottomAnchor).isActive = true
-    videoListCollectionView.pinToSuperview([.left, .right, .bottom])
+    feedCollectionView.topAnchor.constraint(equalTo: menuBar.bottomAnchor).isActive = true
+    feedCollectionView.pinToSuperview([.left, .bottom, .right])
   }
   
   private func setupNavigationBar() {
@@ -123,5 +116,48 @@ extension HomeController: SettingsViewDelegate {
     settingsView.dismiss {
       completion()
     }
+  }
+}
+
+extension HomeController: UICollectionViewDataSource {
+  func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    return 4
+  }
+  
+  func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FeedCell.cellIdentifier, for: indexPath)
+    return cell
+  }
+  
+}
+
+extension HomeController: UICollectionViewDelegate {
+  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+    return 0
+  }
+  
+  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+    return 0
+  }
+}
+
+extension HomeController: UICollectionViewDelegateFlowLayout {}
+
+extension HomeController: UIScrollViewDelegate {
+  func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+    let xPosition = scrollView.contentOffset.x / CGFloat(menuBar.collectionView.numberOfItems(inSection: 0))
+    let itemWidth = view.frame.width / CGFloat(menuBar.collectionView.numberOfItems(inSection: 0))
+    menuBar.moveUnderlineTo(xPosition)
+    
+    let midXPosition = xPosition + itemWidth / 2
+    let indexPath = menuBar.collectionView.indexPathForItem(at: CGPoint(x: midXPosition, y: menuBar.collectionView.frame.origin.y))
+    menuBar.collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .left)
+  }
+}
+
+extension HomeController: MenuBarDelegate {
+  func scrollTo(item: Int) {
+    let indexPath = IndexPath(item: item, section: 0)
+    feedCollectionView.scrollToItem(at: indexPath, at: .left, animated: true)
   }
 }

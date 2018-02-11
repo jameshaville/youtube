@@ -10,7 +10,7 @@ final class NetworkUIImageView: UIImageView {
     
     guard let url = URL(string: urlString) else { return }
     
-    self.currentUrlString = urlString
+    currentUrlString = urlString
 
     if let imageFromCache = NetworkUIImageView.imageCache.object(forKey: urlString as NSString) {
       image = imageFromCache

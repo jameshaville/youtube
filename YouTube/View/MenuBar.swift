@@ -1,8 +1,13 @@
 import UIKit
 
+protocol MenuBarDelegate: class {
+  func scrollTo(item: Int)
+}
+
 final class MenuBar: UIView {
   
   static let height: CGFloat = 44
+  weak var delegate: MenuBarDelegate?
 
   lazy var collectionView: UICollectionView = {
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
@@ -14,7 +19,15 @@ final class MenuBar: UIView {
     return collectionView
   }()
   
+  private let underlineView: UIView = {
+    let view = UIView()
+    view.translatesAutoresizingMaskIntoConstraints = false
+    view.backgroundColor = .white
+    return view
+  }()
+  
   let imageNames = ["home", "trending", "subscriptions", "account"]
+  private var underlineLeftConstraint = NSLayoutConstraint()
   
   override init(frame: CGRect) {
     super.init(frame: frame)
@@ -28,9 +41,25 @@ final class MenuBar: UIView {
   private func setupViews() {
     let indexPath = IndexPath(item: 0, section: 0)
     collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .centeredHorizontally)
+
+
     addSubview(collectionView)
     collectionView.pinToSuperview()
+    addSubview(underlineView)
+    underlineView.heightAnchor.constraint(equalToConstant: 4).isActive = true
+    underlineView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 1 / CGFloat(imageNames.count)).isActive = true
+    underlineLeftConstraint = underlineView.leftAnchor.constraint(equalTo: leftAnchor)
+    underlineLeftConstraint.isActive = true
+    underlineView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
   }
+  
+  func moveUnderlineTo(_ xPosition: CGFloat) {
+    underlineLeftConstraint.constant = xPosition
+    UIView.animate(withDuration: 0.2) {
+      self.layoutIfNeeded()
+    }
+  }
+  
 }
 
 extension MenuBar: UICollectionViewDataSource {
@@ -51,6 +80,17 @@ extension MenuBar: UICollectionViewDataSource {
   
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
     return 0
+  }
+}
+
+extension MenuBar: UICollectionViewDelegate {
+  func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    guard let xPosition = collectionView.cellForItem(at: indexPath)?.frame.origin.x else { return }
+    underlineLeftConstraint.constant = xPosition
+    UIView.animate(withDuration: 0) {
+      self.layoutIfNeeded()
+    }
+    delegate?.scrollTo(item: indexPath.item)
   }
 }
 
