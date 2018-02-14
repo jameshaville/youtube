@@ -1,16 +1,21 @@
 import Foundation
 
 protocol VideoService {
-  func getVideos(completion: @escaping (Error?, [Video]?) -> ())
+  func getVideos(for type: FeedType, completion: @escaping (Error?, [Video]?) -> ())
 }
 
 final class VideoServiceImpl: VideoService {
   
-  let videoJsonUrlString = "https://s3-us-west-2.amazonaws.com/youtubeassets/home.json"
+  private func videoJSONUrlString(for type: FeedType) -> String {
+    let urlSuffix = ".json"
+    return "https://s3-us-west-2.amazonaws.com/youtubeassets/" + type.rawValue + urlSuffix
+  }
   
-  func getVideos(completion: @escaping (Error?, [Video]?) -> ()) {
+  func getVideos(for type: FeedType = .home, completion: @escaping (Error?, [Video]?) -> ()) {
     var videos = [Video]()
-    guard let videoJsonUrl = URL(string: videoJsonUrlString) else { completion(nil, nil); return }
+    let urlString = videoJSONUrlString(for: type)
+    print(urlString)
+    guard let videoJsonUrl = URL(string: urlString) else { completion(nil, nil); return }
     URLSession.shared.dataTask(with: videoJsonUrl) { data, response, error in
       if let error = error {
         completion(error, nil)

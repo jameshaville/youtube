@@ -8,6 +8,7 @@ final class HomeController: UIViewController {
   private let videoService: VideoService
   private var heightConstraint = NSLayoutConstraint()
   private let settingsView = SettingsView()
+  private let feedTypes: [FeedType] = [.home, .trending, .subscriptions, .account]
   
   let navigationTitleLabel: UILabel = {
     let label = UILabel()
@@ -48,7 +49,11 @@ final class HomeController: UIViewController {
     feedCollectionView.dataSource = self
     feedCollectionView.delegate = self
     feedCollectionView.isPagingEnabled = true
-    feedCollectionView.register(FeedCell.self, forCellWithReuseIdentifier: FeedCell.cellIdentifier)
+   
+    feedCollectionView.register(HomeCell.self, forCellWithReuseIdentifier: FeedType.home.cellIdentifier())
+    feedCollectionView.register(TrendingCell.self, forCellWithReuseIdentifier: FeedType.trending.cellIdentifier())
+    feedCollectionView.register(SubscriptionsCell.self, forCellWithReuseIdentifier: FeedType.subscriptions.cellIdentifier())
+    feedCollectionView.register(AccountCell.self, forCellWithReuseIdentifier: FeedType.account.cellIdentifier())
 
     if let flowLayout = feedCollectionView.collectionViewLayout as? UICollectionViewFlowLayout {
       flowLayout.estimatedItemSize = UICollectionViewFlowLayoutAutomaticSize
@@ -121,11 +126,12 @@ extension HomeController: SettingsViewDelegate {
 
 extension HomeController: UICollectionViewDataSource {
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    return 4
+    return feedTypes.count
   }
   
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FeedCell.cellIdentifier, for: indexPath)
+    let feedCellIdentifier = feedTypes[indexPath.item].cellIdentifier()
+    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: feedCellIdentifier, for: indexPath)
     return cell
   }
   

@@ -27,6 +27,11 @@
 		FBB863572002DEC700292AEB /* YouTubeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB863562002DEC700292AEB /* YouTubeUITests.swift */; };
 		FBB863A320101BC000292AEB /* VideoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB863A220101BC000292AEB /* VideoCell.swift */; };
 		FBB863A520101BF200292AEB /* HomeDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB863A420101BF200292AEB /* HomeDataSource.swift */; };
+		FBC589E92033B563003EF406 /* AccountCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBC589E82033B563003EF406 /* AccountCell.swift */; };
+		FBC589EB2033B59D003EF406 /* FeedType.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBC589EA2033B59D003EF406 /* FeedType.swift */; };
+		FBE2528420324A0E00ED80C5 /* TrendingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBE2528320324A0E00ED80C5 /* TrendingCell.swift */; };
+		FBE2528620324A6800ED80C5 /* SubscriptionsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBE2528520324A6800ED80C5 /* SubscriptionsCell.swift */; };
+		FBE2528820324AA100ED80C5 /* HomeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBE2528720324AA100ED80C5 /* HomeCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +78,11 @@
 		FBB863582002DEC700292AEB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FBB863A220101BC000292AEB /* VideoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCell.swift; sourceTree = "<group>"; };
 		FBB863A420101BF200292AEB /* HomeDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDataSource.swift; sourceTree = "<group>"; };
+		FBC589E82033B563003EF406 /* AccountCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountCell.swift; sourceTree = "<group>"; };
+		FBC589EA2033B59D003EF406 /* FeedType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedType.swift; sourceTree = "<group>"; };
+		FBE2528320324A0E00ED80C5 /* TrendingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingCell.swift; sourceTree = "<group>"; };
+		FBE2528520324A6800ED80C5 /* SubscriptionsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionsCell.swift; sourceTree = "<group>"; };
+		FBE2528720324AA100ED80C5 /* HomeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +115,7 @@
 			children = (
 				FB77AA042013EEA0009C1D17 /* Video.swift */,
 				FB5555082022984D002B87D7 /* Setting.swift */,
+				FBC589EA2033B59D003EF406 /* FeedType.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -116,6 +127,10 @@
 				FB77AA0A2016BE3C009C1D17 /* MenuItemCell.swift */,
 				FB55550A20264489002B87D7 /* SettingsCell.swift */,
 				FB55550C20277744002B87D7 /* FeedCell.swift */,
+				FBE2528320324A0E00ED80C5 /* TrendingCell.swift */,
+				FBE2528520324A6800ED80C5 /* SubscriptionsCell.swift */,
+				FBE2528720324AA100ED80C5 /* HomeCell.swift */,
+				FBC589E82033B563003EF406 /* AccountCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -371,19 +386,24 @@
 			files = (
 				FB77AA132016C10F009C1D17 /* NetworkUIImageView.swift in Sources */,
 				FB77AA012012B3FF009C1D17 /* ViewConstants.swift in Sources */,
+				FBE2528820324AA100ED80C5 /* HomeCell.swift in Sources */,
 				FB77AA092016B454009C1D17 /* VideoService.swift in Sources */,
 				FBB863392002DEC600292AEB /* HomeController.swift in Sources */,
 				FB5555092022984D002B87D7 /* Setting.swift in Sources */,
 				FB77AA0B2016BE3C009C1D17 /* MenuItemCell.swift in Sources */,
 				FB77AA162019471D009C1D17 /* APIResponse.swift in Sources */,
 				FB77AA032012BCD3009C1D17 /* MenuBar.swift in Sources */,
+				FBC589E92033B563003EF406 /* AccountCell.swift in Sources */,
 				FBB863372002DEC600292AEB /* AppDelegate.swift in Sources */,
 				FBB863A320101BC000292AEB /* VideoCell.swift in Sources */,
 				FB77AA052013EEA0009C1D17 /* Video.swift in Sources */,
 				FB77AA0720169E78009C1D17 /* UIView+Extensions.swift in Sources */,
 				FBB863A520101BF200292AEB /* HomeDataSource.swift in Sources */,
 				FB55550D20277744002B87D7 /* FeedCell.swift in Sources */,
+				FBE2528620324A6800ED80C5 /* SubscriptionsCell.swift in Sources */,
+				FBC589EB2033B59D003EF406 /* FeedType.swift in Sources */,
 				FB77AA1A201D28DA009C1D17 /* SettingsView.swift in Sources */,
+				FBE2528420324A0E00ED80C5 /* TrendingCell.swift in Sources */,
 				FB55550B20264489002B87D7 /* SettingsCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

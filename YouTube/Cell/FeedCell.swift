@@ -1,42 +1,34 @@
 import UIKit
 
-final class FeedCell: UICollectionViewCell {
-  
+class FeedCell: UICollectionViewCell {
+
   let videoService = VideoServiceImpl()
-  private var videos = [Video]()
-  
-  static var cellIdentifier: String {
-    return "\(self)"
-  }
-  
+  var videos = [Video]()
+  let refreshControl = UIRefreshControl()
+
   lazy var videoListCollectionView: UICollectionView = {
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
     collectionView.translatesAutoresizingMaskIntoConstraints = false
     collectionView.dataSource = self
     collectionView.register(VideoCell.self, forCellWithReuseIdentifier: VideoCell.cellIdentifier)
     collectionView.backgroundColor = .white
+    collectionView.alwaysBounceVertical = true
     if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
       layout.estimatedItemSize = UICollectionViewFlowLayoutAutomaticSize
     }
+    
+    refreshControl.addTarget(self, action: #selector(getVideos), for: .valueChanged)
+    collectionView.backgroundView = refreshControl
+    
     return collectionView
   }()
   
+  
   override init(frame: CGRect) {
     super.init(frame: frame)
-    
+
     backgroundColor = .white
     
-    videoService.getVideos { error, videos in
-      if let error = error {
-        print(error.localizedDescription)
-        return
-      }
-      
-      self.videos = videos ?? []
-      DispatchQueue.main.async { [weak self] in
-        self?.videoListCollectionView.reloadData()
-      }
-    }
     videoListCollectionView.contentInsetAdjustmentBehavior = .never
     
     translatesAutoresizingMaskIntoConstraints = false
@@ -46,12 +38,15 @@ final class FeedCell: UICollectionViewCell {
     contentView.addSubview(videoListCollectionView)
     videoListCollectionView.pinToSuperview([.left, .right, .top])
     videoListCollectionView.pinToSuperview([.bottom], constant: -35)
+    
+    getVideos()
   }
   
   required init?(coder aDecoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
   
+  @objc func getVideos() {}
 }
 
 extension FeedCell: UICollectionViewDataSource {
